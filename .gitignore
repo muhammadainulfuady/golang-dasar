@@ -1,5 +1,4 @@
-go.mod
-src
+src/
 he.sh
 
 # ada banyak file pada folder src jadi gak gw push dah
