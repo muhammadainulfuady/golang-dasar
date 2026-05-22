@@ -1,2 +1,2 @@
 go.mod
-src/
+src/ # ini adalah folder yang berisi kode sumber dari proyek Go saya
