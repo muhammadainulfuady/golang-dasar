@@ -1,8 +1,16 @@
 package main
-import "fmt"
 
-func main(){
-	hasilTambah, hasilKali := tambahKali(2, 3)
-	fmt.Println(hasilTambah)
-	fmt.Println(hasilKali)
+func main() {
+	biodata := []string{
+		"address: 123 Main St",
+		"age: 30",
+		"email: johndoe@example.com",
+	}
+	for _, data := range biodata {
+		println(data)
+	}
+
+	for i := 0; i < len(biodata); i++ {
+		println(biodata[i])
+	}
 }
