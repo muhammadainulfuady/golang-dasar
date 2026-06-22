@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type Hewan interface {
-	Bersuara()
+	Bersuara() string
 }
 
 type Kucing struct {
@@ -14,16 +14,16 @@ type Anjing struct {
 	Nama string
 }
 
-func (k Kucing) Bersuara() {
-	fmt.Println(k.Nama, ": Meong...")
+func (k Kucing) Bersuara() string {
+	return k.Nama + ": Meow..."
 }
 
-func (a Anjing) Bersuara() {
-	fmt.Println(a.Nama, ": Guk Guk...")
+func (a Anjing) Bersuara() string {
+	return a.Nama + ": Guk Guk..."
 }
 
 func tampilkanSuara(h Hewan) {
-	h.Bersuara()
+	fmt.Println(h.Bersuara())
 }
 
 func main() {
