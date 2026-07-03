@@ -43,9 +43,10 @@ func main() {
 	tarik := r1.Tarik(2500000)
 	if tarik == true {
 		fmt.Printf("Saldo setelah di tarik %d", r1.Saldo)
-		}else{
-			fmt.Println("Maaf saldo yang anda tarik itu kurang")
-		}
-		Transfer(r1, r1, 1000000)
-		fmt.Printf("Saldo setelah di transfer %d", r1.Saldo)
+	} else {
+		fmt.Println("Maaf saldo yang anda tarik itu kurang")
 	}
+	Transfer(r1, r1, 1000000)
+	fmt.Printf("Saldo setelah di transfer %d", r1.Saldo)
+	fmt.Scanln("hell")
+}
