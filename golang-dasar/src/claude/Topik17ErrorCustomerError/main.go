@@ -1,26 +1,51 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
-var (
-	ErrPembagian = errors.New("Tidak bisa di bagi dengan nol")
-)
+type Nasabah struct {
+	FullName string
+	Atm      string
+	Saldo    int
+}
 
-func bagi(nilai int, pembagi int) (int, error) {
-	if pembagi == 0 {
-		return 0, ErrPembagian
+type ErrPenarikanUang struct {
+	FullName string
+	Atm      string
+	Saldo    int
+}
+
+func (e ErrPenarikanUang) Error() string {
+	return "Gagal narik saldo"
+}
+
+func (n *Nasabah) MenarikUang(jumlah int) (int, error) {
+	if n.Saldo < jumlah {
+		return 0, &ErrPenarikanUang{
+			FullName: n.FullName,
+			Saldo:    n.Saldo,
+			Atm:      n.Atm,
+		}
 	}
-	return nilai / pembagi, nil
+	n.Saldo -= jumlah
+	return n.Saldo, nil
 }
 
 func main() {
-	if result, err := bagi(10, 0); err != nil {
-		fmt.Println(err)
-		return
+	nasabah1 := &Nasabah{
+		FullName: "Nama Lengkap Saya",
+		Atm:      "BRI",
+		Saldo:    20000,
+	}
+	result, err := nasabah1.MenarikUang(2000000)
+	if err != nil {
+		if narikErr, ok := err.(*ErrPenarikanUang); ok {
+			fmt.Println("Silahkan hubungi admin via chat yang biodata dibawah ini :")
+			fmt.Println(narikErr.Atm)
+			fmt.Println(narikErr.FullName)
+			fmt.Println(narikErr.Saldo)
+			return
+		}
 	} else {
-		fmt.Println("Hasil dari pembagian adalah :", result)
+		fmt.Println("Berhasil nari sisa salfo", result)
 	}
 }
